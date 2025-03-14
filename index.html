@@ -6,6 +6,7 @@
     <title>A A MUJAHEED GLOBAL ENTERPRISES</title>
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
   body{
@@ -86,7 +87,7 @@
       display: none;
     }
     .login-container{
-      
+      width: 450px;
     }
   }
 </style>
@@ -111,8 +112,76 @@
       <br /><hr style="border: 1px solid #19757E;"/>
       <br /><br />
     </div>
-    
-    
     <div class="bg"></div>
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value.trim();
+    
+    if (username === "" || password === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Username and password cannot be empty!'
+        });
+        return;
+    }
+
+    // Confirm before proceeding
+    Swal.fire({
+        icon: 'warning',
+        title: 'Are you sure?',
+        text: 'Do you want to log in to the dashboard?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Login!',
+        cancelButtonText: 'Cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Show loader before checking credentials
+            Swal.fire({
+                title: 'Logging in...',
+                html: '<b>Please wait...</b>',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            setTimeout(() => {
+                if (username === "admin" && password === "admin") {
+                    localStorage.setItem("loggedIn", "true"); // Store login status
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful',
+                        text: 'Redirecting to Admin Dashboard!',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = "dashboard.html"; // Redirect after Swal closes
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: 'Incorrect Username or Password!',
+                    });
+                }
+            }, 2000);
+        }
+    });
+});
+
+// Prevent accessing dashboard without login
+if (window.location.pathname.includes("dashboard.html")) {
+    if (localStorage.getItem("loggedIn") !== "true") {
+        window.location.href = "index.html"; // Redirect to login page
+    }
+}
+
+    </script>
 </body>
 </html>
