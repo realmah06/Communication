@@ -40,14 +40,65 @@
     color: #fff;
     text-shadow: 0px 0px 1px #307D6D, 0px 0px 5px darkred, 0px 0px 10px darkgreen;
   }
+  .login-container input[type="text"], input[type="password"]{
+    padding: 12px 17px;
+    display: block;
+    margin-top: 20px;
+    margin-left: 6px;
+    border-radius: 0.5rem;
+    border: 1px solid #fff;
+    background-color: #B5D9EC;
+    font-size: 16px;
+    font-weight: 450;
+    outline: none;
+    width: 90%;
+  }
+  input[type="checkbox"]{
+    margin: 10px;
+  }
+  a{
+    text-decoration: none;
+    float: right;
+    margin: 10px;
+    color: #aaa;
+  }
+  button{
+    padding: 12px 17px;
+    display: block;
+    margin-top: 20px;
+    margin-left: 6px;
+    border-radius: 0.5rem;
+    border: 1px solid #fff;
+    background-color: #19757E;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 450;
+    outline: none;
+    width: 98%;
+  }
 </style>
 <body>
     <div class="login-container">
       <br />
       <center>
-        <img src="logo.jpg" alt="logo" height="110">
+        <img src="logo.jpg" alt="logo" height="110" width="130">
       </center>
+      <br /><br />
+      <marquee behavior="left" direction="left">
+      <h3>Welcome back to a_a_mujaheed_global_enterprises.com.ng</h3>
+      </marquee>
+      <br /><br />
+      <form id="loginForm">
+        <input type="text" name="username" id="username" placeholder="Username" />
+        <input type="password" name="password" id="password" placeholder="Password" />
+        <input type="checkbox"> <a href="#">Forgot Password?</a>
+        <br /><br />
+        <button type="submit">Sign In</button>
+      </form>
+      <br /><hr style="border: 1px solid #19757E;"/>
     </div>
+    
+    
     <div class="bg"></div>
 </body>
 </html>
